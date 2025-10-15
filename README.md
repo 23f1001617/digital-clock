@@ -2,7 +2,7 @@
 
 Generated app for:
 
-> Create a simple webpage that displays the current time in large bold text and updates every second using JavaScript. The time should be centered on the screen with a dark background and white text.
+> Update the previous clock app to also display a greeting like 'Good Morning', 'Good Afternoon', or 'Good Evening' based on the time of day, and show the current date below the clock in smaller font.
 
 ---
 MIT License
