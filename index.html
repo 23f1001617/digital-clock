@@ -3,35 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Current Time Display</title>
+    <title>Clock App with Greeting</title>
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #333;
-            color: white;
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #clock {
             font-size: 48px;
-            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #greeting {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        #date {
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <div id="time"></div>
+    <div id="clock"></div>
+    <div id="greeting"></div>
+    <div id="date"></div>
 
     <script>
-        function updateTime() {
+        function updateClock() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            document.getElementById('time').textContent = timeString;
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const clock = document.getElementById('clock');
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+
+            const greeting = document.getElementById('greeting');
+            if (hours < 12) {
+                greeting.textContent = 'Good Morning';
+            } else if (hours < 18) {
+                greeting.textContent = 'Good Afternoon';
+            } else {
+                greeting.textContent = 'Good Evening';
+            }
+
+            const date = document.getElementById('date');
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            date.textContent = now.toLocaleDateString(undefined, options);
         }
 
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call to display time immediately
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call to display immediately
     </script>
 </body>
 </html>
-<!-- build-id: 2025-10-15T09:49:53.827657 -->
+<!-- build-id: 2025-10-15T09:51:30.206190 -->
